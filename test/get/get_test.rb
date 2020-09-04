@@ -1,11 +1,11 @@
 require "test_helper"
+require "http"
 
 class GetTest < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::Get::VERSION
-  end
-
-  def test_it_does_something_useful
-    assert false
+    r = HTTP.get url("/home")
+    pp r.status
+    pp r.headers[:server]
+    pp r.to_s
   end
 end
